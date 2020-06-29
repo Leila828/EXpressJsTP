@@ -1,0 +1,33 @@
+<% if (utilisateurs.length==0) { %>
+
+<h1> pas d utilisateur</h1>
+
+
+<br> <br>
+<%  }else { %>
+    <table border="1">
+        <% utilisateurs.forEach(function (utilisateur){ %>
+            <tr>
+                <td> <%= utilisateur.id %>
+                <td> <%= utilisateur.login %>
+                <td> <%= utilisateur.pwd %>
+                <td> <form style="display:inline" action="/utilisateur/mod" method="post">login:
+                        <input type="text" name="login"  value="<%=utilisateur.login %>">
+                        <input type="password" name="pwd" value="<%=utilisateur.pwd %>">
+                        <input type="submit" value="modifier"></form>
+                <td>
+                    <form style="display:inline" action="/utilisateur/supp" method="post">
+                        <input type="hidden" name="id" value="<%=utilisateur.id %>">
+                        <br>
+                        <input type="submit" value="supprimer"></form>
+            </tr>
+        <% });%>
+    </table>
+<% }%>
+
+<h1>liste des utilisateurs </h1>
+
+
+<form action="utilisateur/nouveau">
+    <input type="submit" value="ajouter">
+</form>
